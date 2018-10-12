@@ -75,8 +75,10 @@ namespace StarChart.Controllers
         public IActionResult RenameObject(int id, string name)
         {
             var existingObject = _context.CelestialObjects.Find();
-            if (existingObject == null) return NotFound();
+            if(existingObject == null)
+                return NotFound();
             existingObject.Name = name;
+            existingObject.Id = id;
             _context.CelestialObjects.Update(existingObject);
             _context.SaveChanges();
             return NoContent();
